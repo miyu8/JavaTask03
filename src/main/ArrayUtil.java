@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Random;
+import java.util.Arrays;
 
 /**
  * @author Лобанов Михаил
@@ -10,44 +11,6 @@ public final class ArrayUtil {
     private static int[] arr2;
 
     private ArrayUtil() {
-    }
-
-    /**
-     * Настройка начальных параметров для сортировки Хоара
-     */
-    private static void qsort(int[] items) {
-
-        qs(items, 0, items.length - 1);
-    }
-
-    /**
-     * Быстрая рекурсивная сортировка Хоара
-     */
-    private static void qs(int[] items, int left, int right) {
-        int i;
-        int j;
-        int x;
-        int y;
-
-        i = left;
-        j = right;
-        x = items[(left + right) / 2];
-
-        do {
-            while ((items[i] < x) && (i < right)) i++;
-            while ((x < items[j]) && (j > left)) j--;
-
-            if (i <= j) {
-                y = items[i];
-                items[i] = items[j];
-                items[j] = y;
-                i++;
-                j--;
-            }
-        } while (i <= j);
-
-        if (left < j) qs(items, left, j);
-        if (i < right) qs(items, i, right);
     }
 
     /*
@@ -88,8 +51,8 @@ public final class ArrayUtil {
         if (arr == null && arr2 == null) {
             noneError = true;
         } else if (arr != null && arr2 != null) {
-            qsort(arr);
-            qsort(arr2);
+            Arrays.sort(arr);
+            Arrays.sort(arr2);
             int i = 0;
             int j = 0;
             int arrLengthMinusOne = arr.length - 1;
@@ -139,6 +102,28 @@ public final class ArrayUtil {
     public static void print(int[] arrIn) {
         for (int x : arrIn) {
             System.out.println(x);
+        }
+    }
+
+    /*
+    Фильтр массива по предикату
+     */
+    public static int[] filter(int[] arrIn, PredicateFilter predicate) {
+        if (arrIn != null) {
+            arr = new int[arrIn.length];
+            int row = 0;
+
+            for (int value : arrIn) {
+                if (predicate.hasPredicate(value)) {
+                    arr[row] = value;
+                    row++;
+                }
+            }
+            int[] arrOut = new int[row];
+            System.arraycopy(arr, 0, arrOut, 0, row);
+            return arrOut;
+        } else {
+            return arr;
         }
     }
 }

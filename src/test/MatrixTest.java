@@ -10,6 +10,13 @@ import static org.junit.Assert.*;
  */
 public class MatrixTest {
     @Test
+    public void getMatrix() throws Exception {
+        double[][] matr = {{5, 6}, {7, 8}};
+        Matrix matrix = new Matrix(matr);
+        Matrix matrix2 = matrix.getMatrix();
+    }
+
+    @Test
     public void hasDeterminant3() throws Exception {
         double[][] matr = {{12, 1, 7}, {4, 8, 5}, {2, 4, 5}};
         Matrix matrix = new Matrix(matr);
@@ -46,7 +53,7 @@ public class MatrixTest {
         double[][] matr3 = {{27, 30, 33}, {61, 68, 75}, {95, 106, 117}};
         Matrix matrix = new Matrix(matr);
         Matrix matrix2 = new Matrix(matr2);
-        assertArrayEquals(matr3, matrix.multiplyMatrix(matrix2).getMatrix());
+        assertArrayEquals(matr3, matrix.multiplyMatrix(matrix2).getArray());
     }
 
     @Test
@@ -56,7 +63,7 @@ public class MatrixTest {
         double[][] matr3 = {{19, 22}, {43, 50}};
         Matrix matrix = new Matrix(matr);
         Matrix matrix2 = new Matrix(matr2);
-        assertArrayEquals(matr3, matrix.multiplyMatrix(matrix2).getMatrix());
+        assertArrayEquals(matr3, matrix.multiplyMatrix(matrix2).getArray());
     }
 
     @Test
@@ -66,7 +73,7 @@ public class MatrixTest {
         double[][] matr3 = {{6, 8}, {10, 12}};
         Matrix matrix = new Matrix(matr);
         Matrix matrix2 = new Matrix(matr2);
-        assertArrayEquals(matr3, matrix.sumMatrix(matrix2).getMatrix());
+        assertArrayEquals(matr3, matrix.sumMatrix(matrix2).getArray());
     }
 
     @Test

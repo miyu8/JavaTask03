@@ -18,9 +18,12 @@ public class Matrix {
         return matrix[0].length;
     }
 
-    public double[][] getMatrix() {
-
-        return matrix;
+    public double[][] getArray() {
+        if (matrix != null) {
+            return matrix.clone();
+        } else {
+            return null;
+        }
     }
 
     public Matrix(double[][] matr) {
@@ -52,7 +55,7 @@ public class Matrix {
     public Matrix sumMatrix(Matrix matr) {
         double sumResult[][];
         Matrix sumMatr = null;
-        if ((getMatrix() != null) && (matr.getMatrix() != null) &&
+        if ((getArray() != null) && (matr.getArray() != null) &&
                 (getRowCount() == matr.getRowCount()) && (getColumnCount() == matr.getColumnCount())) {
             sumResult = new double[getRowCount()][getColumnCount()];
             for (int rowNumber = 0; rowNumber < getRowCount(); rowNumber++) {
@@ -93,7 +96,7 @@ public class Matrix {
     Вычисление определителя
      */
     public Double hasDeterminant() {
-        if ((getMatrix() != null) && (getRowCount() == getColumnCount())) {
+        if ((getArray() != null) && (getRowCount() == getColumnCount())) {
             int N = getRowCount();
             double[][] matr = new double[N][N];
             double denom = 1;
@@ -140,5 +143,13 @@ public class Matrix {
         } else {
             return null;
         }
+    }
+
+    /*
+    Клонирование матрицы
+     */
+    public Matrix getMatrix() {
+        Matrix matr = new Matrix(getArray());
+        return matr;
     }
 }

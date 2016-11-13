@@ -5,29 +5,36 @@ import main.ArrayUtil;
 
 import static org.junit.Assert.*;
 
+import main.PredicateFilter;
 import org.junit.Test;
 
 /**
  * @author Лобанов Михаил
  */
 public class ArrayUtilTest {
+    @Test
+    public void filter() throws Exception {
+        int[] arrIn = {1, 2, 3, 4, 5, 6};
+        int[] arrIn2 = {1, 2, 3, 4, 5};
+        assertArrayEquals(arrIn2, ArrayUtil.filter(arrIn, new PredicateFilter("<=", 5, 1)));
+    }
 
     @Test
-    public void mixTest() throws Exception {
+    public void mix() throws Exception {
         int[] arrIn = {1, 2, 3, 4, 5, 6};
         int size = 5;
         assertEquals(size, ArrayUtil.resize(arrIn, size).length);
     }
 
     @Test
-    public void comparisonTest() throws Exception {
+    public void comparison() throws Exception {
         int[] arrIn = {1, 6, 1, 2, 7, 2, 3, 2, 7, 4, 5, 6};
         int[] arrIn2 = {1, 2, 3, 3, 1, 5, 4, 6, 7};
         assertEquals(true, ArrayUtil.comparison(arrIn, arrIn2));
     }
 
     @Test
-    public void ResizeLength() throws Exception {
+    public void resizeLength() throws Exception {
         int[] arrIn = {1, 2, 3};
         int size = 5;
         assertEquals(size, ArrayUtil.resize(arrIn, size).length);
